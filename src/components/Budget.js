@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 const Budget = () => {
-    const { dispatch, budget, expenses } = useContext(AppContext);
+    const { dispatch, budget, expenses, currency } = useContext(AppContext);
     const changeBudget = (ba) => {
         if(ba > 20000) {
             alert("Budget can't exceed 20000");
@@ -28,7 +28,7 @@ const Budget = () => {
 
     return (
         <div className='alert alert-secondary'>
-            <span>Budget: £
+            <span>Budget: {currency}
                 <input
                     required="required"
                     type = "number"

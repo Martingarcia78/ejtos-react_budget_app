@@ -2,19 +2,32 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Currencymod = () => {
-    const { currency } = useContext(AppContext);
+    const { dispatch, currency } = useContext(AppContext);
+
+    const changecurrency = (n) => {
+        const new_currency = n.target.value;
+
+        dispatch({
+         type: "CHG_CURRENCY",
+         payload: new_currency,   
+        });
+    };
 
     return (
-        <div className='alert alert-secondary' style = {{}}>
+        <div className='alert alert-secondary' style = {{background:"#66FF99",}}>
             <span>
-                   Currency: {currency}
-                <select className="custom-select" id="inputGroupSelect01">
-                <option defaultValue>Choose...</option>
-                <option value="Dollar" name="Dollar"> $ Dollar</option>
-                <option value="Pound" name="Pound"> £ Pound</option>
-                <option value="Euro" name="Euro">Є Euro</option>
-                <option value="Ruppee" name="Ruppee">₹ Ruppee</option>
-                </select>
+                   Currency: ({currency}
+                <select className="custom-select" 
+                        id="inputGroupSelect01" 
+                        style = {{background:"#66FF99", 
+                        border:"none"}}
+                        onChange={(event) => changecurrency(event)}>
+
+                <option value="£" name="Pound">£ Pound</option>
+                <option value="$" name="Dollar">$ Dollar</option>
+                <option value="Є" name="Euro">Є Euro</option>
+                <option value="₹" name="Ruppee">₹ Ruppee</option>
+                </select>)
             </span>
         </div>
     );
